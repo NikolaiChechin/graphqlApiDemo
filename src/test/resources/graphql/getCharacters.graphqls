@@ -1,0 +1,25 @@
+query HireCharactersByIds($characterIds: [ID]!){
+    hireCharactersByIds(ids: $characterIds) {
+        id
+        characterClass
+        level
+        strength
+        dexterity
+        wisdom
+        weapon {
+            id
+            type
+            damage
+        }
+        armor {
+            id
+            type
+            defense
+        }
+        inventory {
+            id
+            type
+            weight
+        }
+    }
+}

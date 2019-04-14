@@ -1,0 +1,79 @@
+type Query {
+    hireCharacter(id: ID!): Character
+    hireCharactersByIds(ids: [ID]!): [Character]
+    hireCharactersByClasses(classes: [CharacterClass]): [Character]
+}
+
+type Character {
+    id: ID!,
+    characterClass: CharacterClass,
+    level: Int,
+    strength: Int,
+    dexterity: Int,
+    wisdom: Int,
+    weapon: Weapon,
+    armor: Armor,
+    inventory: [Item]
+}
+
+enum CharacterClass {
+    PALADIN,
+    WIZARD,
+    RANGER
+}
+
+type Weapon {
+    id: ID!,
+    type: WeaponType,
+    damage: Int
+}
+
+enum WeaponType {
+    SWORD,
+    BOW,
+    STAVE
+}
+
+type Armor {
+    id: ID!,
+    type: ArmorType,
+    defense: Int
+}
+
+enum ArmorType {
+    LIGHT,
+    MEDIUM,
+    HEAVY
+}
+
+type Item {
+    id: ID!,
+    type: ItemType,
+    weight: Int
+}
+
+enum ItemType {
+    HEALTH_POTION,
+    SPELL_SCROLL
+}
+
+query {
+    hireCharactersByClasses(classes: [PALADIN, WIZARD, RANGER]) {
+        level
+        strength
+        dexterity
+        wisdom
+        weapon {
+            type
+            damage
+        }
+        armor {
+            type
+            defense
+        }
+        inventory {
+            type
+            weight
+        }
+    }
+}
